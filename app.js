@@ -8,12 +8,17 @@ const session = require("express-session");
 const mongoDBStroe = require("connect-mongodb-session")(session);
 require("dotenv").config();
 const databaseUrl = process.env.DATADASE_URL;
+const path = require("path");
 
 //const mongoConnect = require("./utils/database.js");
 
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
+
+// Views folder ka path
+app.set("views", path.join(__dirname, "views"));
+
 app.use(express.urlencoded());
 
 const store = new mongoDBStroe({
