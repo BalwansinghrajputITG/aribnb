@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+  </head>
+  <body
+    class="bg-gradient-to-br from-red-100 via-white to-red-50 min-h-screen flex flex-col"
+  >
+    <!-- Header -->
+    <%- include('../partials/nav.ejs') %>
+
+    <!-- Main -->
+    <main class="flex-grow flex items-center justify-center p-6">
+      <div
+        class="bg-white border border-red-200 rounded-3xl shadow-lg p-8 w-full max-w-md transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl hover:scale-105"
+      >
+        <h1
+          class="font-extrabold text-3xl text-center text-red-600 mb-6 drop-shadow-md"
+        >
+          <%= editing ? 'Edit' : 'Add' %> Your Home
+        </h1>
+
+        <form
+          class="flex flex-col gap-5"
+          action="<%= editing ? '/host/editHome' : '/host/addHome' %>"
+          method="POST"
+        >
+          <!-- Input -->
+          <input
+            type="hidden"
+            name="_id"
+            value="<%=editing ? home._id : '' %>"
+          />
+
+          <input
+            class="border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300"
+            type="text"
+            placeholder="Enter home imge ulr"
+            name="imageUrl"
+            value="<%= editing ? home.imageUrl : '' %>"
+            required
+          />
+
+          <input
+            class="border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300"
+            type="text"
+            placeholder="Enter your home name"
+            name="home"
+            value="<%= editing ? home.houseName : ''%>"
+            required
+          />
+
+          <input
+            class="border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300"
+            type="text"
+            placeholder="Enter your home description"
+            name="description"
+            value="<%= editing ? home.description : ''%>"
+            required
+          />
+
+          <input
+            class="border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300"
+            type="text"
+            placeholder="Enter your home price"
+            name="price"
+            value="<%= editing ? home.price : ''%>"
+            required
+          />
+
+          <!-- Button -->
+          <button
+            class="bg-gradient-to-r from-red-500 to-red-600 p-3 rounded-xl text-white font-semibold shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

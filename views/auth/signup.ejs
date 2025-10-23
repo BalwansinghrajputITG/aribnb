@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+  </head>
+  <body
+    class="bg-gradient-to-br from-red-100 via-white to-red-50 min-h-screen flex flex-col"
+  >
+    <!-- Header -->
+    <%- include('../partials/nav.ejs') %>
+
+    <!-- Main -->
+    <main class="flex-grow flex items-center justify-center p-6">
+      <div
+        class="bg-white border border-red-200 rounded-3xl shadow-lg p-8 w-full max-w-md transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl hover:scale-105"
+      >
+        <h1
+          class="font-extrabold text-3xl text-center text-red-600 mb-6 drop-shadow-md"
+        >
+          Signup Page
+        </h1>
+
+        <form
+          class="flex flex-col gap-4"
+          action="/auth/user/submit"
+          method="POST"
+          novalidate
+        >
+          <div>
+            <label for="firstName" class="sr-only">First name</label>
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              required
+              placeholder="First name"
+              class="w-full border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300"
+            />
+          </div>
+
+          <div>
+            <label for="lastName" class="sr-only">Last name</label>
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              placeholder="Last name (optional)"
+              class="w-full border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="sr-only">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+              class="w-full border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300"
+            />
+          </div>
+
+          <div class="relative">
+            <label for="password" class="sr-only">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              placeholder="Create password"
+              class="w-full border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300 pr-12"
+            />
+            <button
+              type="button"
+              id="togglePassword"
+              aria-label="Show password"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-red-600"
+            >
+              Show
+            </button>
+          </div>
+
+          <div class="relative">
+            <label for="confirmPassword" class="sr-only"
+              >Confirm password</label
+            >
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              required
+              placeholder="Confirm password"
+              class="w-full border-2 border-red-400 focus:border-red-600 rounded-xl p-3 shadow-sm focus:shadow-md outline-none transition duration-300 pr-12"
+            />
+            <button
+              type="button"
+              id="toggleConfirm"
+              aria-label="Show confirm password"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-red-600"
+            >
+              Show
+            </button>
+          </div>
+
+          <div class="flex flex-col">
+            <p class="text-sm text-gray-600 mb-2">Select your type</p>
+            <div class="flex gap-4 items-center">
+              <label class="inline-flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="userType"
+                  value="user"
+                  checked
+                  class="text-red-600"
+                />
+                <span>Traveller</span>
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="userType"
+                  value="host"
+                  class="text-red-600"
+                />
+                <span>Host</span>
+              </label>
+            </div>
+          </div>
+
+          <p id="formError" class="text-sm text-red-600 min-h-[1.25rem]"></p>
+
+          <button
+            class="bg-gradient-to-r from-red-500 to-red-600 p-3 rounded-xl text-white font-semibold shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105"
+            type="submit"
+          >
+            Create account
+          </button>
+        </form>
+
+        <script>
+          // Small client-side helpers: toggle password visibility and basic matching
+          (function () {
+            const pwd = document.getElementById("password");
+            const confirm = document.getElementById("confirmPassword");
+            const toggle = document.getElementById("togglePassword");
+            const toggleC = document.getElementById("toggleConfirm");
+            const form = document.querySelector("form");
+            const formError = document.getElementById("formError");
+
+            function toggleInput(el, btn) {
+              if (el.type === "password") {
+                el.type = "text";
+                btn.textContent = "Hide";
+              } else {
+                el.type = "password";
+                btn.textContent = "Show";
+              }
+            }
+
+            toggle.addEventListener("click", () => toggleInput(pwd, toggle));
+            toggleC.addEventListener("click", () =>
+              toggleInput(confirm, toggleC)
+            );
+
+            form.addEventListener("submit", function (e) {
+              formError.textContent = "";
+              if (pwd.value !== confirm.value) {
+                e.preventDefault();
+                formError.textContent = "Passwords do not match.";
+                pwd.focus();
+                return false;
+              }
+              return true;
+            });
+          })();
+        </script>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

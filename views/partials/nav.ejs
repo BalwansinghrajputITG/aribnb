@@ -1,0 +1,152 @@
+<header
+  class="bg-gradient-to-r from-red-600 to-red-500 p-4 shadow-xl sticky top-0 z-50"
+>
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a href="/" class="flex items-center gap-3">
+        <span class="text-white text-2xl">🏠</span>
+        <span
+          class="text-white text-lg font-extrabold tracking-wide drop-shadow-md"
+          >Airbnb Clone</span
+        >
+      </a>
+    </div>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center space-x-3">
+      <a
+        class="<%= currentPage === 'home' ? 'bg-white text-red-600' : 'text-white' %> px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300 shadow-md"
+        href="/"
+        >Home</a
+      >
+
+      <a
+        class="<%= currentPage === 'home-list' ? 'bg-white text-red-600' : 'text-white' %> px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300 shadow-md"
+        href="/homeList"
+        >Home List</a
+      >
+
+      <% if(isLoggedIn) { %>
+      <a
+        class="<%= currentPage === 'favorite' ? 'bg-white text-red-600' : 'text-white' %> px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300 shadow-md"
+        href="/favoriteHomes"
+        >Favorite</a
+      >
+      <a
+        class="<%= currentPage === 'host-homes' ? 'bg-white text-red-600' : 'text-white' %> px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300 shadow-md"
+        href="/host/host-home"
+        >Host Homes</a
+      >
+      <a
+        class="<%= currentPage === 'addHome' ? 'bg-white text-red-600' : 'text-white' %> px-4 py-2 rounded-xl font-semibold transition duration-300 hover:bg-white hover:text-red-600 shadow-md"
+        href="/host/addHome"
+        >Add Home</a
+      >
+
+      <form class="inline-block" method="POST" action="/auth/user/logOut">
+        <button
+          class="px-4 py-2 text-white rounded-xl font-semibold transition duration-300 hover:bg-white hover:text-red-600 shadow-md"
+        >
+          Logout
+        </button>
+      </form>
+      <% } else { %>
+      <a
+        class="<%= currentPage === 'login' ? 'bg-white text-red-600' : 'text-white' %> px-4 py-2 rounded-xl font-semibold transition duration-300 hover:bg-white hover:text-red-600 shadow-md"
+        href="/auth/login"
+        >Login</a
+      >
+      <a
+        class="<%= currentPage === 'signup' ? 'bg-white text-red-600' : 'text-white' %> px-4 py-2 rounded-xl font-semibold transition duration-300 hover:bg-white hover:text-red-600 shadow-md"
+        href="/auth/signup"
+        >Signup</a
+      >
+      <% } %>
+    </nav>
+
+    <!-- Mobile controls -->
+    <div class="md:hidden flex items-center">
+      <button
+        id="navToggle"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+        class="p-2 rounded-md bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-white"
+      >
+        <span id="navIcon">☰</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+    <div class="flex flex-col gap-2">
+      <a
+        class="<%= currentPage === 'home' ? 'bg-white text-red-600' : 'text-white' %> block px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300"
+        href="/"
+        >Home</a
+      >
+      <a
+        class="<%= currentPage === 'home-list' ? 'bg-white text-red-600' : 'text-white' %> block px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300"
+        href="/homeList"
+        >Home List</a
+      >
+
+      <% if(isLoggedIn) { %>
+      <a
+        class="<%= currentPage === 'favorite' ? 'bg-white text-red-600' : 'text-white' %> block px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300"
+        href="/favoriteHomes"
+        >Favorite</a
+      >
+      <a
+        class="<%= currentPage === 'host-homes' ? 'bg-white text-red-600' : 'text-white' %> block px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300"
+        href="/host/host-home"
+        >Host Homes</a
+      >
+      <a
+        class="<%= currentPage === 'addHome' ? 'bg-white text-red-600' : 'text-white' %> block px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300"
+        href="/host/addHome"
+        >Add Home</a
+      >
+
+      <form method="POST" action="/auth/user/logOut">
+        <button
+          class="w-full text-left px-4 py-2 text-white rounded-xl font-semibold transition duration-300 hover:bg-white hover:text-red-600"
+        >
+          Logout
+        </button>
+      </form>
+      <% } else { %>
+      <a
+        class="<%= currentPage === 'login' ? 'bg-white text-red-600' : 'text-white' %> block px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300"
+        href="/auth/login"
+        >Login</a
+      >
+      <a
+        class="<%= currentPage === 'signup' ? 'bg-white text-red-600' : 'text-white' %> block px-4 py-2 rounded-xl hover:bg-white hover:text-red-600 font-semibold transition duration-300"
+        href="/auth/signup"
+        >Signup</a
+      >
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const btn = document.getElementById("navToggle");
+      const menu = document.getElementById("mobileMenu");
+      const icon = document.getElementById("navIcon");
+      btn &&
+        btn.addEventListener("click", function () {
+          const expanded = this.getAttribute("aria-expanded") === "true";
+          this.setAttribute("aria-expanded", String(!expanded));
+          if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+            icon.textContent = "✕";
+          } else {
+            menu.classList.add("hidden");
+            icon.textContent = "☰";
+          }
+        });
+    })();
+  </script>
+</header>

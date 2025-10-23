@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+  </head>
+
+  <body class="min-h-screen text-white">
+    <!-- Header -->
+    <%- include('../partials/nav.ejs') %>
+
+    <main class="mx-auto max-w-5xl px-4 py-10 sm:py-14">
+      <!-- Back -->
+      <div class="mb-6 flex items-center gap-2 text-sm text-white/70">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-lg border border-red-400 bg-red-600 px-3 py-1.5 transition hover:bg-red-600"
+        >
+          Back
+        </a>
+        <span>•</span>
+        <span>Home Details</span>
+      </div>
+
+      <!-- Card -->
+      <section
+        class="grid grid-cols-1 gap-6 rounded-2xl border border-red-400 bg-red-600 p-4 md:grid-cols-2"
+      >
+        <!-- Image -->
+        <div class="relative rounded-xl overflow-hidden">
+          <img
+            src="<%= imgUrl %>"
+            alt="<%= houseName %>"
+            class="h-72 w-full object-cover md:h-full"
+          />
+          <div
+            class="absolute right-3 top-3 rounded-lg bg-red-600 px-3 py-1.5 text-sm font-semibold"
+          >
+            ₹ <%= price %>
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="flex flex-col justify-center gap-5 p-3">
+          <header>
+            <h1 class="text-3xl font-bold text-red-200 sm:text-4xl">
+              <%= houseName %>
+            </h1>
+            <p class="mt-2 text-white/70"><%= description %></p>
+          </header>
+
+          <div class="flex gap-3">
+            <a
+              href="#"
+              class="inline-flex items-center justify-center rounded-lg bg-sky-400 px-5 py-2.5 font-semibold transition hover:bg-sky-700"
+            >
+              Book Now
+            </a>
+            <form action="/favorite/home/add" method="post">
+              <input type="hidden" name="homeId" value="<%= id %>" />
+              <button
+                type="submit"
+                class="inline-flex items-center justify-center rounded-lg border border-red-400/30 bg-sky-400 px-5 py-2.5 font-semibold transition hover:bg-sky-700"
+              >
+                add to favorite
+              </button>
+            </form>
+          </div>
+
+          <!-- Extra Info -->
+          <dl class="grid grid-cols-3 gap-3 text-sm">
+            <div class="rounded-lg border border-red-400/30 bg-red-600/20 p-2">
+              <dt class="text-white/60">Theme</dt>
+              <dd class="font-semibold">Red</dd>
+            </div>
+            <div class="rounded-lg border border-red-400/30 bg-red-600/20 p-2">
+              <dt class="text-white/60">Style</dt>
+              <dd class="font-semibold">Simple</dd>
+            </div>
+            <div class="rounded-lg border border-red-400/30 bg-red-600/20 p-2">
+              <dt class="text-white/60">Condition</dt>
+              <dd class="font-semibold">Excellent</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <p class="mt-8 text-center text-xs text-red-500">
+        Designed with TailwindCSS + EJS • Red Simple Detail Page
+      </p>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>
