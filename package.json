@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12",
+    "@tailwindcss/postcss": "^4.1.16",
     "connect-mongodb-session": "^5.0.0",
     "dotenv": "^17.2.2",
     "ejs": "^3.1.10",
@@ -9,7 +10,8 @@
     "express-validator": "^7.3.0",
     "mongoose": "^8.19.0",
     "nodemon": "^3.1.10",
-    "tailwindcss": "^4.1.12"
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.16"
   },
   "name": "aribnb",
   "version": "1.0.0",
